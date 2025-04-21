@@ -264,7 +264,7 @@ def plot_spectrogram_to_numpy(spectrogram):
 
   fig.canvas.draw()
   data = np.frombuffer(fig.canvas.buffer_rgba(), dtype=np.uint8)
-  data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+  data = data.reshape(fig.canvas.get_width_height()[::-1] + (4,))
   plt.close()
   return data
 
