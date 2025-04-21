@@ -22,7 +22,8 @@
     "use_sr": true,
     "max_speclen": 512,
     "port": "8001",
-    "model_dir": "/content/so-vits-svc-4.1/logs/44k",
+    "model_name": "念",
+    "model_dir": "/content/drive/MyDrive/checkpoints",
     "keep_ckpts": 3,
     "all_in_mem": false,
     "vol_aug": false
