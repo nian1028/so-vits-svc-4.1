@@ -1,4 +1,6 @@
 {
+  "model_name": "念",
+  "model_dir": "/content/drive/MyDrive/checkpoints",
   "train": {
     "log_interval": 200,
     "eval_interval": 800,
@@ -22,8 +24,6 @@
     "use_sr": true,
     "max_speclen": 512,
     "port": "8001",
-    "model_name": "念",
-    "model_dir": "/content/drive/MyDrive/checkpoints",
     "keep_ckpts": 3,
     "all_in_mem": false,
     "vol_aug": false
