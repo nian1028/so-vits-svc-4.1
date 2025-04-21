@@ -167,18 +167,34 @@ def load_checkpoint(checkpoint_path, model, optimizer=None, skip_optimizer=False
     return model, optimizer, learning_rate, iteration
 
 
+# 保存检查点的函数
 def save_checkpoint(model, optimizer, learning_rate, iteration, checkpoint_path):
-    os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)
-    logger.info("Saving model and optimizer state at iteration {} to {}".format(
-    iteration, checkpoint_path))
+    os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)  # 确保文件夹存在
+    logger.info(f"Saving model and optimizer state at iteration {iteration} to {checkpoint_path}")
+
     if hasattr(model, 'module'):
         state_dict = model.module.state_dict()
     else:
         state_dict = model.state_dict()
-    torch.save({'model': state_dict,
-              'iteration': iteration,
-              'optimizer': optimizer.state_dict(),
-              'learning_rate': learning_rate}, checkpoint_path)
+
+    torch.save({
+        'model': state_dict,
+        'iteration': iteration,
+        'optimizer': optimizer.state_dict(),
+        'learning_rate': learning_rate
+    }, checkpoint_path)
+
+
+# 在训练过程中使用的代码：
+for epoch in range(start_epoch, total_epochs):
+    # 模型训练代码...
+    print(f"Epoch {epoch} training...")
+
+    # 定义检查点路径，使用 epoch 数字作为路径的一部分
+    checkpoint_path = f'/content/drive/MyDrive/checkpoints/checkpoint_epoch_{epoch}.pth'  # 每个epoch保存一个新的检查点
+
+    # 保存当前的检查点
+    save_checkpoint(model, optimizer, learning_rate, epoch, checkpoint_path)
 
 def clean_checkpoints(path_to_models='logs/44k/', n_ckpts_to_keep=2, sort_by_time=True):
   """Freeing up space by deleting saved ckpts
