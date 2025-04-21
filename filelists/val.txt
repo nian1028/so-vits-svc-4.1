@@ -1,2 +1,2 @@
-./dataset/44k/До/slice_012.wav
-./dataset/44k/До/slice_040.wav
+./dataset/44k/еїµ/slice_012.wav
+./dataset/44k/еїµ/slice_040.wav
